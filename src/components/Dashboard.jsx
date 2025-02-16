@@ -11,89 +11,12 @@ import {
   logoutService,
   sendMessageService,
 } from "../services/service";
-const fetchedMessages = [
-  {
-    _id: "67b0548c3e21122df7a3dcd1",
-    senderId: "67aeec3727977afb039cb410",
-    receiverId: "67add75a343ae8bfbd505788",
-    message: "Hey, how are you?",
-    time: new Date(),
-  },
-  {
-    _id: "67b0548c3e21122df7a3dcd2",
-    senderId: "67add75a343ae8bfbd505788",
-    receiverId: "67aeec3727977afb039cb410",
-    message: "I am good! What about you?",
-    time: new Date(),
-  },
-  {
-    _id: "67b0548c3e21122df7a3dcd3",
-    senderId: "67aeec3727977afb039cb410",
-    receiverId: "67add75a343ae8bfbd505788",
-    message: "I am doing well, thanks!",
-    time: new Date(),
-  },
-  {
-    _id: "67b0548c3e21122df7a3dcd4",
-    senderId: "67add75a343ae8bfbd505788",
-    receiverId: "67aeec3727977afb039cb410",
-    message: "What are you up to today?",
-    time: new Date(),
-  },
-  {
-    _id: "67b0548c3e21122df7a3dcd5",
-    senderId: "67aeec3727977afb039cb410",
-    receiverId: "67add75a343ae8bfbd505788",
-    message: "Just working on a project.",
-    time: new Date(),
-  },
-  {
-    _id: "67b0548c3e21122df7a3dcd6",
-    senderId: "67add75a343ae8bfbd505788",
-    receiverId: "67aeec3727977afb039cb410",
-    message: "That sounds great!",
-    time: new Date(),
-  },
-  {
-    _id: "67b0548c3e21122df7a3dcd7",
-    senderId: "67aeec3727977afb039cb410",
-    receiverId: "67add75a343ae8bfbd505788",
-    message: "Yeah, it’s coming along well.",
-    time: new Date(),
-  },
-  {
-    _id: "67b0548c3e21122df7a3dcd8",
-    senderId: "67add75a343ae8bfbd505788",
-    receiverId: "67aeec3727977afb039cb410",
-    message: "Let me know if you need help!",
-    time: new Date(),
-  },
-  {
-    _id: "67b0548c3e21122df7a3dcd9",
-    senderId: "67aeec3727977afb039cb410",
-    receiverId: "67add75a343ae8bfbd505788",
-    message: "Thanks, I appreciate it!",
-    time: new Date(),
-  },
-  {
-    _id: "67b0548c3e21122df7a3dcda",
-    senderId: "67add75a343ae8bfbd505788",
-    receiverId: "67aeec3727977afb039cb410",
-    message: "No problem, happy to help!",
-    time: new Date(),
-  },
-];
 
-const SOCKET_SERVER_URL = "http://localhost:5000"; // Backend URL
+
+const SOCKET_SERVER_URL = "https://chatapp-backend-unji.onrender.com"; 
 const socket = io(SOCKET_SERVER_URL);
 
-const sampleUsers = [
-  { userId: 1, name: "Arjun" },
-  { userId: 2, name: "Rahul" },
-  { userId: 3, name: "Sneha" },
-  { userId: 4, name: "Vikram" },
-  { userId: 5, name: "Anjali" },
-];
+
 
 function HomePage() {
   const [users, setUsers] = useState([]);
