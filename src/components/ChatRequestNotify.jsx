@@ -13,13 +13,13 @@ export default function ChatRequestNotification({ request, onAccept, onReject })
             <p className="text-md font-semibold">{request.userName} sent a chat request</p>
             <div className="mt-3 flex justify-between">
                 <button 
-                    className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-md"
+                    className="bg-green-500 cursor-pointer hover:bg-green-600 text-white px-3 py-1 rounded-md"
                     onClick={() => onAccept(request.fromUserId, request.userName)}
                 >
                     Accept
                 </button>
                 <button 
-                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md"
+                    className="bg-red-500 cursor-pointer hover:bg-red-600 text-white px-3 py-1 rounded-md"
                     onClick={() => onReject(request.fromUserId)}
                 >
                     Reject

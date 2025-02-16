@@ -173,7 +173,7 @@ function HomePage() {
   
   const fetchAllMessage = async (id) => {
     try {
-      toast.info("chat message fetching");
+      
       const response = await getChatService(id);
       setMessages(response.messages)
       console.log("chat response; ", response);
@@ -248,6 +248,7 @@ function HomePage() {
       receiver: selectedUser.userId,
       name: auth.userName,
     });
+    toast.success("Chat request sended...")
   };
 
   const handleAccept = (userId, userName) => {
@@ -348,14 +349,14 @@ function HomePage() {
               !chatSession ? (
                 <button
                   onClick={sendChatRequest}
-                  className="p-2 bg-blue-400 rounded-lg"
+                  className="p-2 bg-blue-400 cursor-pointer rounded-lg"
                 >
                   Start Chat
                 </button>
               ) : (
                 <button
                   onClick={handleLeaveChat}
-                  className="p-2 bg-blue-400 rounded-lg"
+                  className="p-2 bg-blue-400 cursor-pointer rounded-lg"
                 >
                   Leave Chat
                 </button>
@@ -406,7 +407,7 @@ function HomePage() {
               />
               <button
                 onClick={sendMessage}
-                className="ml-2 bg-blue-600 text-white px-4 py-2 rounded-lg"
+                className="ml-2 bg-blue-600 cursor-pointer text-white px-4 py-2 rounded-lg"
               >
                 Send
               </button>
