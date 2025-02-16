@@ -1,10 +1,10 @@
 import React from 'react'
-import Login from '../components/login'
+import LoginCompo from '../components/LoginCompo'
 
 function SignIn() {
   return (
     <>
-      <Login/>
+      <LoginCompo/>
     </>
   )
 }

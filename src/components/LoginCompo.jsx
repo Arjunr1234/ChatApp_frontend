@@ -6,7 +6,7 @@ import { FaEnvelope, FaLock } from 'react-icons/fa';
 import { signInService } from '../services/service';
 import { useAuth } from '../contexts/authContext';
 
-function LoginComp() {
+function LoginCompo() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
@@ -97,4 +97,4 @@ function LoginComp() {
   );
 }
 
-export default LoginComp;
+export default LoginCompo;
