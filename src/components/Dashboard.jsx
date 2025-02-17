@@ -78,8 +78,8 @@ function HomePage() {
   useEffect(() => {
     if (selectedUser) {
       fetchAllMessage(selectedUser.userId);
-         setChatSession(false);
-         setMessages([])
+        // setChatSession(false);
+        // setMessages([])
     }
   }, [selectedUser]);
 
