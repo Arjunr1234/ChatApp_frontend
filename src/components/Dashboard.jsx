@@ -12,22 +12,18 @@ import {
   sendMessageService,
 } from "../services/service";
 
-
-const SOCKET_SERVER_URL = "https://chatapp-backend-unji.onrender.com"; 
+const SOCKET_SERVER_URL = "https://chatapp-backend-unji.onrender.com";
 const socket = io(SOCKET_SERVER_URL);
-
-
 
 function HomePage() {
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState("");
-  const messageEndRef = useRef(null)
+  const messageEndRef = useRef(null);
   const [chatRequest, setChatRequest] = useState(null);
   const { logout, auth } = useAuth();
   const [chatSession, setChatSession] = useState(false);
-
 
   useEffect(() => {
     if (auth?.userId) {
@@ -46,7 +42,6 @@ function HomePage() {
       const handleRequestAcceptedNotify = () => {
         notifyRequestAccept();
         setChatSession(true);
-        
       };
 
       const handleRequestRejectNotify = () => {
@@ -56,8 +51,6 @@ function HomePage() {
       const handleNotfiyChatLeaved = ({ userId, userName }) => {
         notfiyChatLeaved(userName);
       };
-
-     
 
       socket.on("updateUsers", handleUpdateUsers);
       socket.on("receiveChatNotification", handleChatNotification);
@@ -79,26 +72,26 @@ function HomePage() {
   }, [auth]);
 
   useEffect(() => {
-    messageEndRef.current?.scrollIntoView({behavior:"smooth"})
-  },[messages])
+    messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   useEffect(() => {
-   if(selectedUser){
-    fetchAllMessage(selectedUser.userId)
-   }
-  },[selectedUser])
+    if (selectedUser) {
+      fetchAllMessage(selectedUser.userId);
+         setChatSession(false);
+         setMessages([])
+    }
+  }, [selectedUser]);
 
   const handleReceiveMessage = (newMessage) => {
-    setMessages((prev) => [...prev,newMessage])
-    setMessageInput('')
+    setMessages((prev) => [...prev, newMessage]);
+    setMessageInput("");
   };
 
-  
   const fetchAllMessage = async (id) => {
     try {
-      
       const response = await getChatService(id);
-      setMessages(response.messages)
+      setMessages(response.messages);
       console.log("chat response; ", response);
     } catch (error) {
       console.log("Error in fetchAllMessage: ", error);
@@ -107,21 +100,18 @@ function HomePage() {
 
   const sendMessage = async () => {
     if (messageInput.trim() && selectedUser) {
-    
       const receiverId = selectedUser.userId;
       const message = messageInput;
       try {
-        
         const response = await sendMessageService(receiverId, message);
       } catch (error) {
         console.log(error);
       }
-     
     }
   };
 
   const handleSelectUser = (user) => {
-        setSelectedUser(user);
+    setSelectedUser(user);
   };
 
   const notifyRequestReject = () => {
@@ -171,7 +161,7 @@ function HomePage() {
       receiver: selectedUser.userId,
       name: auth.userName,
     });
-    toast.success("Chat request sended...")
+    toast.success("Chat request sended...");
   };
 
   const handleAccept = (userId, userName) => {
@@ -179,7 +169,7 @@ function HomePage() {
     setChatRequest("");
     setSelectedUser({ userId, name: userName });
     setChatSession(true);
-    setMessages(fetchedMessages)
+    setMessages(fetchedMessages);
   };
 
   const handleReject = (userId) => {
@@ -215,8 +205,6 @@ function HomePage() {
       }
     });
   };
-
-  
 
   return (
     <div className="h-screen flex flex-col bg-gray-100">
@@ -290,7 +278,14 @@ function HomePage() {
           </div>
 
           <div className="flex-grow p-4 bg-gray-200 h-[400px] overflow-y-auto">
-    {messages
+  {messages.filter(
+    (m) =>
+      m.senderId === selectedUser?.userId ||
+      m.receiverId === selectedUser?.userId
+  ).length === 0 ? (
+    <p className="text-center text-gray-500">Start conversation</p>
+  ) : (
+    messages
       .filter(
         (m) =>
           m.senderId === selectedUser?.userId ||
@@ -315,9 +310,11 @@ function HomePage() {
             </div>
           </div>
         );
-      })}
-    <div ref={messageEndRef} />
-  </div>
+      })
+  )}
+  <div ref={messageEndRef} />
+</div>
+
 
           {chatSession && selectedUser && (
             <div className="p-4 bg-white border-t flex">
