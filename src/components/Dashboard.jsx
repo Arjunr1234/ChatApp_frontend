@@ -284,7 +284,7 @@ function HomePage() {
       m.receiverId === selectedUser?.userId
   ).length === 0 ? (
     <div className="flex items-center justify-center h-full">
-      <p className="text-gray-500 text-lg animate-bounce">Start conversation</p>
+      <p className="text-gray-500 text-2xl font-bold animate-bounce">Start conversation</p>
     </div>
   )  : (
     messages
