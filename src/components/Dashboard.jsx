@@ -283,8 +283,10 @@ function HomePage() {
       m.senderId === selectedUser?.userId ||
       m.receiverId === selectedUser?.userId
   ).length === 0 ? (
-    <p className="text-center text-gray-500">Start conversation</p>
-  ) : (
+    <div className="flex items-center justify-center h-full">
+      <p className="text-gray-500 text-lg animate-bounce">Start conversation</p>
+    </div>
+  )  : (
     messages
       .filter(
         (m) =>
