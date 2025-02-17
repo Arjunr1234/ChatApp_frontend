@@ -79,7 +79,7 @@ function LoginCompo() {
          
           <button
             type="submit"
-            className="w-full py-3 bg-gradient-to-r from-blue-400 to-indigo-500 text-white font-semibold rounded-lg hover:opacity-80 transition duration-300"
+            className="w-full py-3 cursor-pointer bg-gradient-to-r from-blue-400 to-indigo-500 text-white font-semibold rounded-lg hover:opacity-80 transition duration-300"
           >
             Login
           </button>
