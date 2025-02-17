@@ -284,9 +284,12 @@ function HomePage() {
       m.receiverId === selectedUser?.userId
   ).length === 0 ? (
     <div className="flex items-center justify-center h-full">
-      <p className="text-gray-500 text-2xl font-bold animate-bounce">Start conversation</p>
+      <p className="text-gray-500 text-2xl font-bold animate-bounce bg-white px-6 py-3 rounded-lg shadow-lg border border-gray-300 transition-transform duration-300 hover:scale-105">
+        Start Conversation
+      </p>
     </div>
-  )  : (
+  )
+   : (
     messages
       .filter(
         (m) =>
